@@ -4,7 +4,7 @@ from datetime import datetime
 class ItemType(Enum):
     CONSTRUCTION = 1
     PAINTING = 2
-    PLUMBING = 3
+    ELECTRICIAN_PLUMBING = 3
     INTERIOR = 4
     MESTHRI = 5
 
@@ -101,7 +101,148 @@ def items(item_list):
     item_list.add_item(dt=datetime(2021, 7, 31), item_type=ItemType.MESTHRI,
                        description='Kothanar', amount=32000, page_num=5)
     item_list.add_item(dt=datetime(2021, 8, 4), item_type=ItemType.CONSTRUCTION,
-                       description='Kambi', amount=32000, page_num=2822)
+                       description='Kambi', amount=2822, page_num=5)
+
+    item_list.add_item(dt=datetime(2021, 8, 5), item_type=ItemType.CONSTRUCTION,
+                       description='ConcreteBelt', amount=23300, page_num=6)
+    item_list.add_item(dt=datetime(2021, 8, 5), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=6000, page_num=6)
+
+    item_list.add_item(dt=datetime(2021, 8, 6), item_type=ItemType.CONSTRUCTION,
+                       description='Aadhi?', amount=13500, page_num=6)
+
+    item_list.add_item(dt=datetime(2021, 8, 16), item_type=ItemType.CONSTRUCTION,
+                       description='Gravel', amount=57100, page_num=6)
+
+    item_list.add_item(dt=datetime(2021, 8, 19), item_type=ItemType.CONSTRUCTION,
+                       description='Gravel', amount=85000, page_num=6)
+
+    item_list.add_item(dt=datetime(2021, 8, 22), item_type=ItemType.CONSTRUCTION,
+                       description='Gravel', amount=40000, page_num=6)
+
+    item_list.add_item(dt=datetime(2021, 8, 23), item_type=ItemType.CONSTRUCTION,
+                       description='JCB rent, Gravel filling', amount=27000, page_num=6)
+
+    item_list.add_item(dt=datetime(2021, 8, 27), item_type=ItemType.CONSTRUCTION,
+                       description='Lawyer registration fee', amount=3000, page_num=6)
+
+    item_list.add_item(dt=datetime(2021, 8, 30), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=8000, page_num=7)
+
+    item_list.add_item(dt=datetime(2021, 8, 31), item_type=ItemType.CONSTRUCTION,
+                       description='2 loads of gravel', amount=28000, page_num=7)
+
+    item_list.add_item(dt=datetime(2021, 9, 2), item_type=ItemType.CONSTRUCTION,
+                       description='EC registration', amount=1000, page_num=7)
+
+    item_list.add_item(dt=datetime(2021, 9, 6), item_type=ItemType.CONSTRUCTION,
+                       description='Brick', amount=82800, page_num=7)
+
+    item_list.add_item(dt=datetime(2021, 9, 12), item_type=ItemType.CONSTRUCTION,
+                       description='5 cement bag', amount=2500, page_num=7)
+
+    item_list.add_item(dt=datetime(2021, 9, 13), item_type=ItemType.CONSTRUCTION,
+                       description='Manal', amount=13000, page_num=7)
+    item_list.add_item(dt=datetime(2021, 9, 13), item_type=ItemType.MESTHRI,
+                       description='Kothanar', amount=27000, page_num=7)
+
+    item_list.add_item(dt=datetime(2021, 9, 20), item_type=ItemType.CONSTRUCTION,
+                       description='Kambi', amount=42160, page_num=7)
+    item_list.add_item(dt=datetime(2021, 9, 20), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=8000, page_num=7)
+    item_list.add_item(dt=datetime(2021, 9, 20), item_type=ItemType.CONSTRUCTION,
+                       description='Septic tank', amount=2000, page_num=8)
+
+    item_list.add_item(dt=datetime(2021, 9, 21), item_type=ItemType.CONSTRUCTION,
+                       description='Jelli potathu', amount=6000, page_num=8)
+    item_list.add_item(dt=datetime(2021, 9, 21), item_type=ItemType.CONSTRUCTION,
+                       description='Septic tank', amount=6000, page_num=8)
+
+    item_list.add_item(dt=datetime(2021, 9, 27), item_type=ItemType.CONSTRUCTION,
+                       description='Sengal: 10000*9.6', amount=96000, page_num=8)
+    item_list.add_item(dt=datetime(2021, 9, 27), item_type=ItemType.CONSTRUCTION,
+                       description='M-sand', amount=12000, page_num=8)
+    item_list.add_item(dt=datetime(2021, 9, 27), item_type=ItemType.CONSTRUCTION,
+                       description='P-sand', amount=6500, page_num=8)
+    item_list.add_item(dt=datetime(2021, 9, 27), item_type=ItemType.MESTHRI,
+                       description='Kothanar, kambi construct', amount=23000, page_num=8)
+
+    item_list.add_item(dt=datetime(2021, 9, 29), item_type=ItemType.CONSTRUCTION,
+                       description='Water supply', amount=1000, page_num=8)
+    item_list.add_item(dt=datetime(2021, 9, 29), item_type=ItemType.CONSTRUCTION,
+                       description='Gunny sack-6 pieces', amount=320, page_num=8)
+
+    item_list.add_item(dt=datetime(2021, 9, 30), item_type=ItemType.CONSTRUCTION,
+                       description='Water pipe', amount=1800, page_num=9)
+
+    item_list.add_item(dt=datetime(2021, 10, 4), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=26000, page_num=9)
+
+    item_list.add_item(dt=datetime(2021, 10, 10), item_type=ItemType.CONSTRUCTION,
+                       description='M-sand', amount=13000, page_num=9)
+    item_list.add_item(dt=datetime(2021, 10, 10), item_type=ItemType.CONSTRUCTION,
+                       description='Cement: 15-bag', amount=7300, page_num=9)
+    item_list.add_item(dt=datetime(2021, 10, 10), item_type=ItemType.MESTHRI,
+                       description='Mesthri', amount=40000, page_num=9)
+    item_list.add_item(dt=datetime(2021, 10, 10), item_type=ItemType.CONSTRUCTION,
+                       description='centring', amount=3000, page_num=9)
+
+    item_list.add_item(dt=datetime(2021, 10, 18), item_type=ItemType.CONSTRUCTION,
+                       description='20 cement', amount=9700, page_num=9)
+    item_list.add_item(dt=datetime(2021, 10, 12), item_type=ItemType.CONSTRUCTION,
+                       description='30 cement', amount=13950, page_num=9)
+    item_list.add_item(dt=datetime(2021, 10, 12), item_type=ItemType.CONSTRUCTION,
+                       description='Kambi', amount=82529, page_num=9)
+    item_list.add_item(dt=datetime(2021, 10, 18), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=20000, page_num=9)
+
+    item_list.add_item(dt=datetime(2021, 10, 25), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=4000, page_num=10)
+    item_list.add_item(dt=datetime(2021, 10, 27), item_type=ItemType.CONSTRUCTION,
+                       description='Steps sheet', amount=11000, page_num=10)
+    item_list.add_item(dt=datetime(2021, 10, 27), item_type=ItemType.CONSTRUCTION,
+                       description='Kambi', amount=166710, page_num=10)
+
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=80000, page_num=10)
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.ELECTRICIAN_PLUMBING,
+                       description='Electrician', amount=1000, page_num=10)
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.CONSTRUCTION,
+                       description='Jally & Manal', amount=41000, page_num=10)
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.CONSTRUCTION,
+                       description='Poojai & Seval', amount=1500, page_num=10)
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.CONSTRUCTION,
+                       description='Concrete Mixer', amount=6000, page_num=10)
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.CONSTRUCTION,
+                       description='Mamiyar power of attorney', amount=3000, page_num=10)
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.CONSTRUCTION,
+                       description='MOD registration', amount=57500, page_num=10)
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.CONSTRUCTION,
+                       description='Cement bag', amount=46500, page_num=11)
+    item_list.add_item(dt=datetime(2021, 11, 1), item_type=ItemType.ELECTRICIAN_PLUMBING,
+                       description='Balance for shop', amount=19719, page_num=11)
+
+    item_list.add_item(dt=datetime(2021, 11, 18), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=9000, page_num=11)
+
+    item_list.add_item(dt=datetime(2021, 11, 24), item_type=ItemType.CONSTRUCTION,
+                       description='Saravanan LIC', amount=10000, page_num=11)
+    item_list.add_item(dt=datetime(2021, 11, 20), item_type=ItemType.CONSTRUCTION,
+                       description='Manal', amount=12000, page_num=11)
+    item_list.add_item(dt=datetime(2021, 11, 20), item_type=ItemType.MESTHRI,
+                       description='Mesthri', amount=26000, page_num=11)
+    item_list.add_item(dt=datetime(2021, 11, 23), item_type=ItemType.MESTHRI,
+                       description='Brick(5000)', amount=55000, page_num=11)
+
+    item_list.add_item(dt=datetime(2021, 12, 1), item_type=ItemType.CONSTRUCTION,
+                       description='Kadai balance', amount=20000, page_num=11)
+
+    item_list.add_item(dt=datetime(2021, 12, 8), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=3500, page_num=11)
+    item_list.add_item(dt=datetime(2021, 12, 10), item_type=ItemType.MESTHRI,
+                       description='MESTHRI', amount=2000, page_num=11)
+
+
 
 
 
