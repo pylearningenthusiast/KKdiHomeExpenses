@@ -4,42 +4,46 @@ from collections import defaultdict
 
 class ItemType(Enum):
     CONSTRUCTION = 1
-    PAINTING = 2
+    PAINTER = 2
     ELECTRICIAN_PLUMBING = 3
     INTERIOR = 4
     MESTHRI = 5
-    MISC = 6
-    TILES=7
-    CARPENTER=8
+    TILES=6
+    CARPENTER=7
 
 
 class Item:
-    def __init__(self, dt, item_type, description, amount, page_num):
+    def __init__(self, dt, item_type, description, amount, page_num, notes):
         self.dt = dt
         self.item_type = item_type
         self.description = description
         self.amount = amount
         self.page_num = page_num
+        self.notes = notes
 
 class ItemList:
     def __init__(self):
         self.items = []
 
-    def add_item(self, dt, item_type, description, amount, page_num):
-        self.items.append(Item(dt=dt, item_type=item_type, description=description, amount=amount, page_num=page_num))
+    def add_item(self, dt, item_type, description, amount, page_num, notes=''):
+        self.items.append(Item(dt=dt, item_type=item_type, description=description,
+                               amount=amount, page_num=page_num, notes=notes))
 
     def print_stats(self):
         d = defaultdict(list)
         for item in self.items:
             d[item.page_num].append(item)
+        total_sum = 0
         for k, v in d.items():
             sum_value = sum(i.amount for i in v)
+            total_sum += sum_value
             '''
             if k==12:
                 for i in v:
                     print(i.amount)
             '''
             print(f'{k}: {sum_value}')
+        print(f'Total: {total_sum}')
 
 def populate_items(item_list):
     item_list.add_item(dt=datetime(2021, 7, 10),item_type=ItemType.CONSTRUCTION, description='Manal', amount=10000, page_num=1)
@@ -148,7 +152,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2021, 12, 16), item_type=ItemType.CONSTRUCTION, description='SHOP', amount=44000, page_num=12)
     item_list.add_item(dt=datetime(2021, 12, 16), item_type=ItemType.CONSTRUCTION, description='20 Cement Bag', amount=9700, page_num=12)
     item_list.add_item(dt=datetime(2021, 12, 20), item_type=ItemType.MESTHRI, description='MESTHRI', amount=25000, page_num=12)
-    item_list.add_item(dt=datetime(2021, 12, 25), item_type=ItemType.MISC, description='ElectricityTools', amount=17000, page_num=12)
+    item_list.add_item(dt=datetime(2021, 12, 25), item_type=ItemType.CONSTRUCTION, description='ElectricityTools', amount=17000, page_num=12)
     item_list.add_item(dt=datetime(2021, 12, 27), item_type=ItemType.MESTHRI, description='MESTHRI', amount=52000, page_num=12)
     item_list.add_item(dt=datetime(2021, 12, 22), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electricity man', amount=10000, page_num=12)
     item_list.add_item(dt=datetime(2021, 12, 30), item_type=ItemType.MESTHRI, description='TimberShop', amount=50000, page_num=12)
@@ -165,7 +169,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 1, 13), item_type=ItemType.CONSTRUCTION, description='Cement Shop', amount=20000, page_num=13)
 
     item_list.add_item(dt=datetime(2022, 1, 13), item_type=ItemType.CONSTRUCTION, description='3/4 Jelly', amount=8000, page_num=14)
-    item_list.add_item(dt=datetime(2022, 1, 21), item_type=ItemType.MISC, description='Kambi Kadaikku', amount=50000, page_num=14)
+    item_list.add_item(dt=datetime(2022, 1, 21), item_type=ItemType.CONSTRUCTION, description='Kambi Kadaikku', amount=50000, page_num=14)
     item_list.add_item(dt=datetime(2022, 1, 24), item_type=ItemType.MESTHRI, description='MESTHRI', amount=25000, page_num=14)
     item_list.add_item(dt=datetime(2022, 1, 31), item_type=ItemType.MESTHRI, description='MESTHRI', amount=19000, page_num=14)
     item_list.add_item(dt=datetime(2022, 2, 2), item_type=ItemType.CONSTRUCTION, description='Manal, MSand', amount=12000, page_num=14)
@@ -207,7 +211,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 3, 30), item_type=ItemType.CONSTRUCTION, description='Oil for not leaking roof', amount=3800, page_num=17)
     item_list.add_item(dt=datetime(2022, 3, 30), item_type=ItemType.CONSTRUCTION, description='Kambi extra', amount=1260, page_num=17)
     item_list.add_item(dt=datetime(2022, 4, 3), item_type=ItemType.CONSTRUCTION, description='Electrical', amount=3600, page_num=17)
-    item_list.add_item(dt=datetime(2022, 4, 3), item_type=ItemType.MISC, description='Food for roof day', amount=3000, page_num=17)
+    item_list.add_item(dt=datetime(2022, 4, 3), item_type=ItemType.CONSTRUCTION, description='Food for roof day', amount=3000, page_num=17)
     item_list.add_item(dt=datetime(2022, 4, 4), item_type=ItemType.CONSTRUCTION, description='Manal', amount=60000, page_num=17)
     item_list.add_item(dt=datetime(2022, 4, 3), item_type=ItemType.CONSTRUCTION, description='Cement', amount=63000, page_num=17)
     item_list.add_item(dt=datetime(2022, 4, 4), item_type=ItemType.MESTHRI, description='MESTHRI', amount=50000, page_num=17)
@@ -222,7 +226,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 4, 16), item_type=ItemType.CONSTRUCTION, description='Electrician', amount=4000, page_num=18)
     item_list.add_item(dt=datetime(2022, 4, 18), item_type=ItemType.MESTHRI, description='MESTHRI', amount=20000, page_num=18)
     item_list.add_item(dt=datetime(2022, 4, 19), item_type=ItemType.MESTHRI, description='MESTHRI', amount=8500, page_num=18)
-    item_list.add_item(dt=datetime(2022, 4, 19), item_type=ItemType.MISC, description='Machine rent', amount=2000, page_num=18)
+    item_list.add_item(dt=datetime(2022, 4, 19), item_type=ItemType.CONSTRUCTION, description='Machine rent', amount=2000, page_num=18)
     item_list.add_item(dt=datetime(2022, 4, 21), item_type=ItemType.MESTHRI, description='MESTHRI', amount=10000, page_num=18)
     item_list.add_item(dt=datetime(2022, 4, 22), item_type=ItemType.CONSTRUCTION, description='Cement shopbill(67014) given: 65000', amount=65000, page_num=18)
     item_list.add_item(dt=datetime(2022, 4, 22), item_type=ItemType.CONSTRUCTION, description='Windows steal', amount=110000, page_num=18)
@@ -230,7 +234,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 4, 25), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrical tools', amount=20032, page_num=18)
     item_list.add_item(dt=datetime(2022, 4, 25), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician', amount=7000, page_num=18)
 
-    item_list.add_item(dt=datetime(2022, 4, 28), item_type=ItemType.MISC, description='Elevation', amount=3000, page_num=19)
+    item_list.add_item(dt=datetime(2022, 4, 28), item_type=ItemType.CONSTRUCTION, description='Elevation', amount=3000, page_num=19)
     item_list.add_item(dt=datetime(2022, 4, 28), item_type=ItemType.CONSTRUCTION, description='Manal Aathu',amount=58000, page_num=19)
     item_list.add_item(dt=datetime(2022, 4, 30), item_type=ItemType.MESTHRI, description='MESTHRI', amount=7000, page_num=19)
     item_list.add_item(dt=datetime(2022, 4, 30), item_type=ItemType.CONSTRUCTION, description='Courtyard grill, backdroor grill advance', amount=20000, page_num=19)
@@ -253,6 +257,73 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 5, 30), item_type=ItemType.MESTHRI, description='MESTHRI on roof day', amount=22000, page_num=20)
     item_list.add_item(dt=datetime(2022, 6, 6), item_type=ItemType.MESTHRI, description='MESTHRI', amount=33000, page_num=20)
     item_list.add_item(dt=datetime(2022, 6, 13), item_type=ItemType.MESTHRI, description='MESTHRI', amount=40000, page_num=20)
+
+    item_list.add_item(dt=datetime(2022, 6, 11), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrical plumbing tools', amount=100000, page_num=21)
+    item_list.add_item(dt=datetime(2022, 6, 21), item_type=ItemType.MESTHRI, description='MESTHRI', amount=22000, page_num=21)
+    item_list.add_item(dt=datetime(2022, 6, 21), item_type=ItemType.CONSTRUCTION, description='Adjustment', amount=500, page_num=21, notes='Adjustment')
+    item_list.add_item(dt=datetime(2022, 6, 21), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Plumbing', amount=22500, page_num=21)
+    item_list.add_item(dt=datetime(2022, 6, 21), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Plumbing', amount=7500, page_num=21)
+    item_list.add_item(dt=datetime(2022, 6, 21), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician', amount=20000, page_num=21)
+    item_list.add_item(dt=datetime(2022, 6, 30), item_type=ItemType.MESTHRI, description='MESTHRI', amount=25000, page_num=21)
+    item_list.add_item(dt=datetime(2022, 6, 30), item_type=ItemType.MESTHRI, description='Appa->Mesthri for monday', amount=15000, page_num=21)
+    item_list.add_item(dt=datetime(2022, 6, 30), item_type=ItemType.PAINTER, description='PAINTER tools Janathachem limestone', amount=13000, page_num=21)
+    item_list.add_item(dt=datetime(2022, 6, 30), item_type=ItemType.PAINTER, description='PAINTER advance', amount=10000, page_num=21)
+    item_list.add_item(dt=datetime(2022, 7, 4), item_type=ItemType.MESTHRI, description='Sent by sathish', amount=30000, page_num=21, notes='Sent by Sathish')
+    item_list.add_item(dt=datetime(2022, 7, 4), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician', amount=10000, page_num=21, notes='Sent by Sathish')
+    item_list.add_item(dt=datetime(2022, 7, 4), item_type=ItemType.PAINTER, description='PAINTER advance', amount=20000, page_num=21, notes='Sent by Sathish')
+    item_list.add_item(dt=datetime(2022, 7, 8), item_type=ItemType.CONSTRUCTION, description='Appa', amount=40000, page_num=21)
+    item_list.add_item(dt=datetime(2022, 7, 8), item_type=ItemType.PAINTER, description='Painter 25000, 2 boyes whitecement 2000', amount=27000, page_num=21)
+
+    item_list.add_item(dt=datetime(2022, 7, 9), item_type=ItemType.MESTHRI, description='MESTHRI', amount=10000, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 11), item_type=ItemType.MESTHRI, description='MESTHRI', amount=20000, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 15), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician Appa', amount=80000, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 16), item_type=ItemType.CONSTRUCTION, description='Sump lid', amount=6200, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.CONSTRUCTION, description='Bricks', amount=11000, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.INTERIOR, description='Interior Chandran', amount=50000, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.MESTHRI, description='MESTHRI', amount=35000, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.CONSTRUCTION, description='Bricks', amount=11500, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.CONSTRUCTION, description='LID', amount=6200, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 20), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician pipe', amount=4000, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 20), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrical tools', amount=7400, page_num=22)
+
+    item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Anna Electrician', amount=11000, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Anna Electrical items', amount=5500, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.CONSTRUCTION, description='Anna pilar smoothing paste', amount=5500, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.PAINTER, description='PAINTER', amount=30000, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.INTERIOR, description='Interior Chandran', amount=25000, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 24), item_type=ItemType.CONSTRUCTION, description='Compound wall', amount=4900, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 24), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrical tools', amount=6300, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 25), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrical and plumbing sivasakthi hardware', amount=84000, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 26), item_type=ItemType.MESTHRI, description='Anna MESTHRI', amount=31000, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 26), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Anna Electrician', amount=15000, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 26), item_type=ItemType.TILES, description='Anuj tiles', amount=280000, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 28), item_type=ItemType.CONSTRUCTION, description='Appa Tally 30k, Extra 20K', amount=50000, page_num=23, notes='As per note: 527000')
+
+    item_list.add_item(dt=datetime(2022, 7, 29), item_type=ItemType.PAINTER, description='Painting', amount=40000, page_num=24)
+    item_list.add_item(dt=datetime(2022, 7, 29), item_type=ItemType.INTERIOR, description='Interior Chandran', amount=27000, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 1), item_type=ItemType.MESTHRI, description='MESTHRI Appa', amount=20000, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 5), item_type=ItemType.PAINTER, description='Painting', amount=25000, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 6), item_type=ItemType.MESTHRI, description='MESTHRI Appa', amount=10000, page_num=24)
+    item_list.add_item(dt=datetime(2022, 7, 30), item_type=ItemType.CONSTRUCTION, description='SentAppa(Sivasakthi clamp and tools)', amount=33000, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 4), item_type=ItemType.CONSTRUCTION, description='B-Sand(Appa)', amount=3500, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 8), item_type=ItemType.CONSTRUCTION, description='Without details(munnadi bakki)', amount=44039, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 8), item_type=ItemType.CONSTRUCTION, description='11/7/22(Kambi)', amount=6850, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 8), item_type=ItemType.CONSTRUCTION, description='15/7/22(cement 10)', amount=4250, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 8), item_type=ItemType.CONSTRUCTION, description='18/7/22(Kambi)', amount=10600, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 8), item_type=ItemType.CONSTRUCTION, description='23/7/22(cement 10)', amount=4250, page_num=24)
+    item_list.add_item(dt=datetime(2022, 8, 8), item_type=ItemType.CONSTRUCTION, description='8/8/22(cement 5)', amount=2200, page_num=24)
+    #item_list.add_item(dt=datetime(2022, 8, 13), item_type=ItemType.CONSTRUCTION, description='Lawrence', amount=70000, page_num=24)
+
+    item_list.add_item(dt=datetime(2022, 8, 8), item_type=ItemType.MESTHRI, description='MESTHRI', amount=5000, page_num=25)
+    item_list.add_item(dt=datetime(2022, 8, 12), item_type=ItemType.PAINTER, description='PAINTER', amount=20000, page_num=25)
+    item_list.add_item(dt=datetime(2022, 8, 16), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician', amount=30000, page_num=25)
+    item_list.add_item(dt=datetime(2022, 8, 16), item_type=ItemType.MESTHRI, description='MESTHRI', amount=15000, page_num=25)
+    item_list.add_item(dt=datetime(2022, 8, 16), item_type=ItemType.PAINTER, description='Paint shop bill', amount=8500, page_num=25)
+    item_list.add_item(dt=datetime(2022, 8, 16), item_type=ItemType.CONSTRUCTION, description='3 stool rent', amount=4000, page_num=25)
+    item_list.add_item(dt=datetime(2022, 8, 22), item_type=ItemType.CONSTRUCTION, description='Appa', amount=20000, page_num=25)
+    item_list.add_item(dt=datetime(2022, 8, 23), item_type=ItemType.TILES, description='Granite Anna 10,000 Advance', amount=91000, page_num=25)
+    item_list.add_item(dt=datetime(2022, 8, 23), item_type=ItemType.MESTHRI, description='MESTHRI Anna', amount=15000, page_num=25)
+
 
 
 
