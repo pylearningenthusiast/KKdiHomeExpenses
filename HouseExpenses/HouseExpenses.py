@@ -1,6 +1,7 @@
 from enum import Enum
 from datetime import datetime
 from collections import defaultdict
+import click
 
 class ItemType(Enum):
     CONSTRUCTION = 1
@@ -10,6 +11,10 @@ class ItemType(Enum):
     MESTHRI = 5
     TILES=6
     CARPENTER=7
+    GOVT = 8,
+    GLASS_WORK = 9,
+    FURNITURES = 10
+
 
 
 class Item:
@@ -21,6 +26,9 @@ class Item:
         self.page_num = page_num
         self.notes = notes
 
+    def __str__(self):
+        return f'{self.dt}, {self.description}, {self.amount}, {self.page_num}'
+
 class ItemList:
     def __init__(self):
         self.items = []
@@ -29,21 +37,56 @@ class ItemList:
         self.items.append(Item(dt=dt, item_type=item_type, description=description,
                                amount=amount, page_num=page_num, notes=notes))
 
-    def print_stats(self):
+
+    def page_wise_sum(self):
         d = defaultdict(list)
+        total_page_wise_sum = 0
         for item in self.items:
             d[item.page_num].append(item)
-        total_sum = 0
         for k, v in d.items():
             sum_value = sum(i.amount for i in v)
-            total_sum += sum_value
-            '''
-            if k==12:
-                for i in v:
-                    print(i.amount)
-            '''
+            total_page_wise_sum += sum_value
             print(f'{k}: {sum_value}')
-        print(f'Total: {total_sum}')
+        print(f'Total page_wise_sum: {total_page_wise_sum}')
+
+    def total(self):
+        total_sum = 0
+        for item in self.items:
+            total_sum += item.amount
+        print(f'Total sum: {total_sum}')
+
+    def item_wise_sum(self):
+        d = defaultdict(list)
+        for item in self.items:
+            d[item.item_type].append(item.amount)
+        for k, v in d.items():
+            print(f'{k}: {sum(v)}')
+
+    def item_wise_detail_impl(self, item_type):
+        sum_value = 0
+        for item in self.items:
+            if item.item_type == item_type:
+                sum_value += item.amount
+                print(item)
+        print(f'Total: {sum_value}')
+
+    def item_wise_detail_painter(self):
+        self.item_wise_detail_impl(ItemType.PAINTER)
+
+    def item_wise_detail_electrician(self):
+        self.item_wise_detail_impl(ItemType.ELECTRICIAN_PLUMBING)
+
+    def item_wise_detail_interior(self):
+        self.item_wise_detail_impl(ItemType.INTERIOR)
+
+    def item_wise_detail_tiles(self):
+        self.item_wise_detail_impl(ItemType.TILES)
+
+    def item_wise_detail_carpenter(self):
+        self.item_wise_detail_impl(ItemType.CARPENTER)
+
+    def item_wise_detail_glasswork(self):
+        self.item_wise_detail_impl(ItemType.GLASS_WORK)
 
 def populate_items(item_list):
     item_list.add_item(dt=datetime(2021, 7, 10),item_type=ItemType.CONSTRUCTION, description='Manal', amount=10000, page_num=1)
@@ -384,19 +427,76 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 10, 20), item_type=ItemType.CONSTRUCTION, description='Appa - Gravel Jelly', amount=7000, page_num=30)
     item_list.add_item(dt=datetime(2022, 10, 20), item_type=ItemType.CONSTRUCTION, description='Appa - MSK Cement works', amount=3500, page_num=30)
 
+    item_list.add_item(dt=datetime(2022, 10, 21), item_type=ItemType.PAINTER, description='PAINTER', amount=20000, page_num=31)
+    item_list.add_item(dt=datetime(2022, 10, 21), item_type=ItemType.PAINTER, description='Hari paint box', amount=200000, page_num=31)
+    item_list.add_item(dt=datetime(2022, 10, 31), item_type=ItemType.MESTHRI, description='MESTHRI', amount=15000, page_num=31)
+    item_list.add_item(dt=datetime(2022, 10, 31), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Tank(Eeshwar electricals)', amount=26000, page_num=31)
+    item_list.add_item(dt=datetime(2022, 11, 4), item_type=ItemType.GOVT, description='tax(corporation office)', amount=4800, page_num=31)
+    item_list.add_item(dt=datetime(2022, 11, 12), item_type=ItemType.CONSTRUCTION, description='Gate vehicle charges', amount=3500, page_num=31)
+    item_list.add_item(dt=datetime(2022, 11, 12), item_type=ItemType.MESTHRI, description='MESTHRI', amount=3000, page_num=31)
+    item_list.add_item(dt=datetime(2022, 11, 12), item_type=ItemType.CONSTRUCTION, description='Gate Chnadran anna', amount=35000, page_num=31)
+    item_list.add_item(dt=datetime(2022, 11, 13), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician', amount=15000, page_num=31)
 
+    item_list.add_item(dt=datetime(2022, 11, 21), item_type=ItemType.MESTHRI, description='MESTHRI', amount=20000, page_num=32)
+    item_list.add_item(dt=datetime(2022, 11, 22), item_type=ItemType.PAINTER, description='Chandran', amount=30000, page_num=32)
+    item_list.add_item(dt=datetime(2022, 11, 30), item_type=ItemType.CONSTRUCTION, description='Chandran steps poke', amount=50000, page_num=32)
+    item_list.add_item(dt=datetime(2022, 12, 5), item_type=ItemType.GLASS_WORK, description='Glass for courtyard & balcony', amount=200000, page_num=32)
+    item_list.add_item(dt=datetime(2022, 12, 12), item_type=ItemType.CONSTRUCTION, description='Bathroom doors', amount=54300, page_num=32)
+    item_list.add_item(dt=datetime(2022, 12, 17), item_type=ItemType.CONSTRUCTION, description='Saradha settlement Appa', amount=14500, page_num=32)
+    item_list.add_item(dt=datetime(2022, 12, 19), item_type=ItemType.INTERIOR, description='Interiors chandran', amount=150000, page_num=32)
+    item_list.add_item(dt=datetime(2022, 12, 19), item_type=ItemType.INTERIOR, description='Mosquito net', amount=60000, page_num=32)
 
+    item_list.add_item(dt=datetime(2023, 1, 2), item_type=ItemType.PAINTER, description='PAINTER', amount=8000, page_num=34)
+    item_list.add_item(dt=datetime(2023, 1, 2), item_type=ItemType.CONSTRUCTION, description='Window glass fitting: chandran bill', amount=17500, page_num=34)
+    item_list.add_item(dt=datetime(2023, 1, 2), item_type=ItemType.CONSTRUCTION, description='App for front door', amount=25000, page_num=34)
+    item_list.add_item(dt=datetime(2023, 1, 4), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician', amount=25000, page_num=34)
+    item_list.add_item(dt=datetime(2023, 1, 4), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Easwar elctricals', amount=50500, page_num=34)
+    item_list.add_item(dt=datetime(2023, 1, 4), item_type=ItemType.GLASS_WORK, description='Raja glass works', amount=50000, page_num=34)
+    item_list.add_item(dt=datetime(2023, 1, 10), item_type=ItemType.TILES, description='Tiles completion work', amount=10000, page_num=34)
+    item_list.add_item(dt=datetime(2023, 1, 10), item_type=ItemType.TILES, description='Tiles velan tiles', amount=11000, page_num=34)
+    item_list.add_item(dt=datetime(2023, 1, 10), item_type=ItemType.PAINTER, description='Appa painter settle, electical tools', amount=30000, page_num=34)
 
+    item_list.add_item(dt=datetime(2023, 1, 10), item_type=ItemType.CONSTRUCTION, description='Pooja handle expenses', amount=16400, page_num=35)
+    item_list.add_item(dt=datetime(2023, 1, 10), item_type=ItemType.TILES, description='Anuj front tile 15 boxes', amount=6000, page_num=35)
+    item_list.add_item(dt=datetime(2023, 1, 12), item_type=ItemType.TILES, description='Anna compound tiles and other stuff', amount=6000, page_num=35)
+    item_list.add_item(dt=datetime(2023, 1, 11), item_type=ItemType.FURNITURES, description='Furnitures', amount=78000, page_num=35)
+    item_list.add_item(dt=datetime(2023, 1, 11), item_type=ItemType.CONSTRUCTION, description='Amazon sink top', amount=3591, page_num=35)
+    item_list.add_item(dt=datetime(2023, 1, 13), item_type=ItemType.CONSTRUCTION, description='Anna Maindoor settlement', amount=25000, page_num=35)
+    item_list.add_item(dt=datetime(2023, 1, 13), item_type=ItemType.CONSTRUCTION, description='Anna mainddoor fitting', amount=11000, page_num=35)
 
-
-
-
-
-
-
-if __name__ == '__main__':
+@click.command()
+@click.option('--page_wise_sum', '-ps', is_flag=True, default=False, help='Page wise individual')
+@click.option('--item_wise_sum', '-is', is_flag=True, default=False, help='Item wise total')
+@click.option('--total_value', '-t', is_flag=True, default=False, help='Page wise Total')
+@click.option('--item_wise_detail_painter', '-idp', is_flag=True, default=False, help='Item wise entries for painter')
+@click.option('--item_wise_detail_electrician', '-ide', is_flag=True, default=False, help='Item wise entries for electrician')
+@click.option('--item_wise_detail_interior', '-idi', is_flag=True, default=False, help='Item wise entries for interior')
+@click.option('--item_wise_detail_tiles', '-idt', is_flag=True, default=False, help='Item wise entries for tiles')
+@click.option('--item_wise_detail_carpenter', '-idc', is_flag=True, default=False, help='Item wise entries for carpenter')
+@click.option('--item_wise_detail_glasswork', '-idg', is_flag=True, default=False, help='Item wise entries for glasswork')
+def summary(page_wise_sum, item_wise_sum, total_value, item_wise_detail_painter,
+            item_wise_detail_electrician, item_wise_detail_interior, item_wise_detail_tiles,
+            item_wise_detail_carpenter, item_wise_detail_glasswork):
     item_list = ItemList()
     populate_items(item_list)
-    item_list.print_stats()
+    fns = {'page_wise_sum': (page_wise_sum, item_list.page_wise_sum),
+           'item_wise_sum': (item_wise_sum, item_list.item_wise_sum),
+           'total_value': (total_value, item_list.total),
+           'item_wise_detail_painter': (item_wise_detail_painter, item_list.item_wise_detail_painter),
+           'item_wise_detail_electrician': (item_wise_detail_electrician, item_list.item_wise_detail_electrician),
+           'item_wise_detail_interior': (item_wise_detail_interior, item_list.item_wise_detail_interior),
+           'item_wise_detail_tiles': (item_wise_detail_tiles, item_list.item_wise_detail_tiles),
+           'item_wise_detail_carpenter': (item_wise_detail_carpenter, item_list.item_wise_detail_carpenter),
+           'item_wise_detail_glasswork': (item_wise_detail_glasswork, item_list.item_wise_detail_glasswork),}
+    for k, v in fns.items():
+        option_value, fn = v
+        print(f'{k}, {option_value}')
 
+    for k, v in fns.items():
+        option_value, fn = v
+        if option_value:
+            fn()
+
+if __name__ == '__main__':
+    summary()
     print("House expenses copied from Aruna's note")
