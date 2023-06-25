@@ -129,7 +129,7 @@ def populate_items(item_list):
 
     item_list.add_item(dt=datetime(2021, 8, 5), item_type=ItemType.CONSTRUCTION, description='ConcreteBelt', amount=23300, page_num=6)
     item_list.add_item(dt=datetime(2021, 8, 5), item_type=ItemType.MESTHRI, description='MESTHRI', amount=6000, page_num=6)
-    item_list.add_item(dt=datetime(2021, 8, 6), item_type=ItemType.CONSTRUCTION, description='Aadhi?', amount=13500, page_num=6)
+    item_list.add_item(dt=datetime(2021, 8, 6), item_type=ItemType.CONSTRUCTION, description='Aadhi? Manal', amount=13500, page_num=6, notes='Entry from page-41')
     item_list.add_item(dt=datetime(2021, 8, 16), item_type=ItemType.CONSTRUCTION, description='Gravel', amount=57100, page_num=6)
     item_list.add_item(dt=datetime(2021, 8, 19), item_type=ItemType.CONSTRUCTION, description='Gravel', amount=85000, page_num=6)
     item_list.add_item(dt=datetime(2021, 8, 22), item_type=ItemType.CONSTRUCTION, description='Gravel', amount=40000, page_num=6)
@@ -322,7 +322,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 7, 15), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrician Appa', amount=80000, page_num=22)
     item_list.add_item(dt=datetime(2022, 7, 16), item_type=ItemType.CONSTRUCTION, description='Sump lid', amount=6200, page_num=22)
     item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.CONSTRUCTION, description='Bricks', amount=11000, page_num=22)
-    item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.INTERIOR, description='Interior Chandran', amount=50000, page_num=22)
+    item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.INTERIOR, description='Interior Chandran. False ceiling', amount=50000, page_num=22)
     item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.MESTHRI, description='MESTHRI', amount=35000, page_num=22)
     item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.CONSTRUCTION, description='Bricks', amount=11500, page_num=22)
     item_list.add_item(dt=datetime(2022, 7, 18), item_type=ItemType.CONSTRUCTION, description='LID', amount=6200, page_num=22)
@@ -333,7 +333,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Anna Electrical items', amount=5500, page_num=23)
     item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.CONSTRUCTION, description='Anna pilar smoothing paste', amount=5500, page_num=23)
     item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.PAINTER, description='PAINTER', amount=30000, page_num=23)
-    item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.INTERIOR, description='Interior Chandran', amount=25000, page_num=23)
+    item_list.add_item(dt=datetime(2022, 7, 22), item_type=ItemType.INTERIOR, description='Interior Chandran. False ceiling', amount=25000, page_num=23)
     item_list.add_item(dt=datetime(2022, 7, 24), item_type=ItemType.CONSTRUCTION, description='Compound wall', amount=4900, page_num=23)
     item_list.add_item(dt=datetime(2022, 7, 24), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrical tools', amount=6300, page_num=23)
     item_list.add_item(dt=datetime(2022, 7, 25), item_type=ItemType.ELECTRICIAN_PLUMBING, description='Electrical and plumbing sivasakthi hardware', amount=84000, page_num=23)
@@ -343,7 +343,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 7, 28), item_type=ItemType.CONSTRUCTION, description='Appa Tally 30k, Extra 20K', amount=50000, page_num=23, notes='As per note: 527000')
 
     item_list.add_item(dt=datetime(2022, 7, 29), item_type=ItemType.PAINTER, description='Painting', amount=40000, page_num=24)
-    item_list.add_item(dt=datetime(2022, 7, 29), item_type=ItemType.INTERIOR, description='Interior Chandran', amount=27000, page_num=24)
+    item_list.add_item(dt=datetime(2022, 7, 29), item_type=ItemType.INTERIOR, description='Interior Chandran. False ceiling', amount=27000, page_num=24)
     item_list.add_item(dt=datetime(2022, 8, 1), item_type=ItemType.MESTHRI, description='MESTHRI Appa', amount=20000, page_num=24)
     item_list.add_item(dt=datetime(2022, 8, 5), item_type=ItemType.PAINTER, description='Painting', amount=25000, page_num=24)
     item_list.add_item(dt=datetime(2022, 8, 6), item_type=ItemType.MESTHRI, description='MESTHRI Appa', amount=10000, page_num=24)
@@ -444,7 +444,7 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 12, 12), item_type=ItemType.CONSTRUCTION, description='Bathroom doors', amount=54300, page_num=32)
     item_list.add_item(dt=datetime(2022, 12, 17), item_type=ItemType.CONSTRUCTION, description='Saradha settlement Appa', amount=14500, page_num=32)
     item_list.add_item(dt=datetime(2022, 12, 19), item_type=ItemType.INTERIOR, description='Interiors chandran', amount=150000, page_num=32)
-    item_list.add_item(dt=datetime(2022, 12, 19), item_type=ItemType.INTERIOR, description='Mosquito net', amount=60000, page_num=32)
+    item_list.add_item(dt=datetime(2022, 12, 19), item_type=ItemType.CONSTRUCTION, description='Mosquito net', amount=60000, page_num=32)
 
     item_list.add_item(dt=datetime(2023, 1, 2), item_type=ItemType.PAINTER, description='PAINTER', amount=8000, page_num=34)
     item_list.add_item(dt=datetime(2023, 1, 2), item_type=ItemType.CONSTRUCTION, description='Window glass fitting: chandran bill', amount=17500, page_num=34)
@@ -463,6 +463,14 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2023, 1, 11), item_type=ItemType.CONSTRUCTION, description='Amazon sink top', amount=3591, page_num=35)
     item_list.add_item(dt=datetime(2023, 1, 13), item_type=ItemType.CONSTRUCTION, description='Anna Maindoor settlement', amount=25000, page_num=35)
     item_list.add_item(dt=datetime(2023, 1, 13), item_type=ItemType.CONSTRUCTION, description='Anna mainddoor fitting', amount=11000, page_num=35)
+
+    #Below are added from individual pages
+    item_list.add_item(dt=datetime(2022, 7, 29), item_type=ItemType.INTERIOR, description='For chandran anna false ceiling', amount=102000, page_num='Interior chandran anna')
+    item_list.add_item(dt=datetime(2022, 10, 31), item_type=ItemType.INTERIOR, description='Wardrobe', amount=300000, page_num='Interior chandran anna')
+    item_list.add_item(dt=datetime(2022, 11, 1), item_type=ItemType.INTERIOR, description='Wardrobe', amount=100000, page_num='Interior chandran anna')
+    item_list.add_item(dt=datetime(2022, 11, 1), item_type=ItemType.INTERIOR, description='Wardrobe', amount=200000, page_num='Interior chandran anna')
+    item_list.add_item(dt=datetime(2022, 12, 19), item_type=ItemType.INTERIOR, description='', amount=150000, page_num='Interior chandran anna')
+    item_list.add_item(dt=datetime(2022, 7, 15), item_type=ItemType.PAINTER, description='Painter', amount=20000, page_num='painter entry from page-38')
 
 @click.command()
 @click.option('--page_wise_sum', '-ps', is_flag=True, default=False, help='Page wise individual')
