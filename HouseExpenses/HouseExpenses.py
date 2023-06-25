@@ -88,6 +88,9 @@ class ItemList:
     def item_wise_detail_glasswork(self):
         self.item_wise_detail_impl(ItemType.GLASS_WORK)
 
+    def item_wise_detail_mesthri(self):
+        self.item_wise_detail_impl(ItemType.MESTHRI)
+
 def populate_items(item_list):
     item_list.add_item(dt=datetime(2021, 7, 10),item_type=ItemType.CONSTRUCTION, description='Manal', amount=10000, page_num=1)
     item_list.add_item(dt=datetime(2021, 7, 12), item_type=ItemType.CONSTRUCTION, description='1-Ft-Pipe,Vadagai,coolie', amount=9000, page_num=1)
@@ -471,6 +474,8 @@ def populate_items(item_list):
     item_list.add_item(dt=datetime(2022, 11, 1), item_type=ItemType.INTERIOR, description='Wardrobe', amount=200000, page_num='Interior chandran anna')
     item_list.add_item(dt=datetime(2022, 12, 19), item_type=ItemType.INTERIOR, description='', amount=150000, page_num='Interior chandran anna')
     item_list.add_item(dt=datetime(2022, 7, 15), item_type=ItemType.PAINTER, description='Painter', amount=20000, page_num='painter entry from page-38')
+    item_list.add_item(dt=datetime(2022, 12, 29), item_type=ItemType.GLASS_WORK, description='Glass work for courtyard top', amount=160000, page_num='Paid during India visit 20k. Advance paid on 5-Jan or 29-Dec')
+    item_list.add_item(dt=datetime(2022, 12, 27), item_type=ItemType.CARPENTER, description='Frontdoor', amount=71000, page_num='Carpenter front door based on whatsapp from Anna')
 
 @click.command()
 @click.option('--page_wise_sum', '-ps', is_flag=True, default=False, help='Page wise individual')
@@ -482,9 +487,10 @@ def populate_items(item_list):
 @click.option('--item_wise_detail_tiles', '-idt', is_flag=True, default=False, help='Item wise entries for tiles')
 @click.option('--item_wise_detail_carpenter', '-idc', is_flag=True, default=False, help='Item wise entries for carpenter')
 @click.option('--item_wise_detail_glasswork', '-idg', is_flag=True, default=False, help='Item wise entries for glasswork')
+@click.option('--item_wise_detail_mesthri', '-idm', is_flag=True, default=False, help='Item wise entries for glasswork')
 def summary(page_wise_sum, item_wise_sum, total_value, item_wise_detail_painter,
             item_wise_detail_electrician, item_wise_detail_interior, item_wise_detail_tiles,
-            item_wise_detail_carpenter, item_wise_detail_glasswork):
+            item_wise_detail_carpenter, item_wise_detail_glasswork, item_wise_detail_mesthri):
     item_list = ItemList()
     populate_items(item_list)
     fns = {'page_wise_sum': (page_wise_sum, item_list.page_wise_sum),
@@ -495,7 +501,8 @@ def summary(page_wise_sum, item_wise_sum, total_value, item_wise_detail_painter,
            'item_wise_detail_interior': (item_wise_detail_interior, item_list.item_wise_detail_interior),
            'item_wise_detail_tiles': (item_wise_detail_tiles, item_list.item_wise_detail_tiles),
            'item_wise_detail_carpenter': (item_wise_detail_carpenter, item_list.item_wise_detail_carpenter),
-           'item_wise_detail_glasswork': (item_wise_detail_glasswork, item_list.item_wise_detail_glasswork),}
+           'item_wise_detail_glasswork': (item_wise_detail_glasswork, item_list.item_wise_detail_glasswork),
+           'item_wise_detail_mesthri': (item_wise_detail_mesthri, item_list.item_wise_detail_mesthri)}
     for k, v in fns.items():
         option_value, fn = v
         print(f'{k}, {option_value}')
